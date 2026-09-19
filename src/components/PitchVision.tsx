@@ -1,72 +1,117 @@
-'use client'
+'use client';
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
+import { Sparkles, Heart, GraduationCap, MapPin, Award } from 'lucide-react';
 
 export default function PitchVision() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const } },
-  }
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="vision" className="w-full py-24 md:py-32 bg-alabaster text-espresso overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section
+      id="story"
+      ref={ref}
+      className="relative min-h-screen py-24 px-4 sm:px-6 lg:px-12 bg-[#B51A1A] overflow-hidden flex items-center justify-center"
+    >
+      {/* Hand-Drawn Fashion Doodles Pattern from Page 2 of PDF */}
+      <div className="absolute inset-0 opacity-15 pointer-events-none mix-blend-overlay">
+        <Image
+          src="/assets/fashion-doodles.png"
+          alt="Fashion Illustrations Pattern"
+          fill
+          className="object-cover"
+        />
+      </div>
+
+      {/* Decorative Washi Tapes on Edges */}
+      <div className="absolute top-8 left-10 w-28 h-8 washi-tape-purple rotate-12 pointer-events-none z-20" />
+      <div className="absolute bottom-8 right-12 w-32 h-8 washi-tape-blue -rotate-6 pointer-events-none z-20" />
+
+      <div className="max-w-4xl w-full mx-auto relative z-10">
+        
+        {/* Tilted Big Bold Headline from Page 2 of PDF */}
         <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-start"
+          initial={{ opacity: 0, y: 30, rotate: -2 }}
+          animate={isInView ? { opacity: 1, y: 0, rotate: -2 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-10"
         >
-          {/* Left Column - 40% */}
-          <div className="md:col-span-5 flex flex-col md:sticky md:top-32">
-            <motion.div variants={itemVariants} className="text-[120px] leading-none font-serif text-warm-gray/30 tracking-tighter mb-4">
-              01
-            </motion.div>
-            <motion.div variants={itemVariants} className="h-px w-24 bg-warm-gray mb-8"></motion.div>
-            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-serif tracking-tight">
-              The Vision
-            </motion.h2>
-          </div>
-
-          {/* Right Column - 60% */}
-          <div className="md:col-span-7 flex flex-col gap-10 mt-8 md:mt-0">
-            <motion.div variants={itemVariants} className="space-y-6 text-lg text-espresso/80 font-sans font-light leading-relaxed">
-              <p>
-                I see an incredible opportunity to elevate your brand while preserving the authentic connection you've built with your audience. The fashion and lifestyle space is crowded, but your voice stands out.
-              </p>
-              <p>
-                My goal is to partner with you to refine the creative direction, streamline the production process, and bring a cohesive editorial eye to your content, allowing you to focus on what you do best: being the face and voice of your community.
-              </p>
-            </motion.div>
-
-            <motion.blockquote 
-              variants={itemVariants}
-              className="pl-8 py-4 border-l-2 border-[#E8DCC4] my-8" 
-            >
-              <p className="font-serif italic text-2xl md:text-3xl text-espresso leading-snug">
-                "I don't want to turn your content into something overly planned or overly commercial. The goal would be to create enough structure behind the scenes so that the content still feels spontaneous, personal and you. My role would be to bring the strategy, ideas and execution support while keeping your personality at the centre."
-              </p>
-            </motion.blockquote>
-            
-            <motion.div variants={itemVariants} className="w-full h-px bg-warm-gray/30 mt-8"></motion.div>
+          <div className="inline-block relative">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold text-white tracking-tight uppercase pdf-white-title-shadow transform -rotate-1">
+              Why I Want to<br />
+              <span className="text-[#FFF275] drop-shadow-md">Work With You</span>
+            </h2>
+            {/* Page marker */}
+            <span className="absolute -top-6 -right-6 sm:-right-10 bg-white text-[#B51A1A] font-bold text-xs px-3 py-1 rounded-full shadow-md rotate-12">
+              02 // PITCH
+            </span>
           </div>
         </motion.div>
+
+        {/* Floating Crumpled White Paper Sheet */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 40 }}
+          animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative bg-[#FAF8F5] rounded-xl sm:rounded-2xl p-8 sm:p-12 md:p-16 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] border border-stone-200 overflow-hidden"
+        >
+          {/* Subtle Crumpled Paper Texture Overlay */}
+          <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-multiply">
+            <Image
+              src="/assets/crumpled-white-paper.jpg"
+              alt="Crumpled paper texture"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Paper Tape Strips at Corners */}
+          <div className="absolute -top-3 left-10 w-24 h-7 washi-tape-gingham rotate-3 shadow-sm" />
+          <div className="absolute -bottom-3 right-10 w-24 h-7 washi-tape-blue -rotate-3 shadow-sm" />
+
+          {/* Letter / Pitch Body Copy */}
+          <div className="relative z-10 space-y-6 text-[#1C1917] font-serif text-lg sm:text-xl md:text-2xl leading-relaxed text-center sm:text-left">
+            <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-[#B51A1A] mb-4">
+              A Personal Note From Simona
+            </p>
+
+            <p className="first-letter:text-5xl first-letter:font-display first-letter:font-extrabold first-letter:text-[#B51A1A] first-letter:float-left first-letter:mr-3 first-letter:leading-none">
+              I’m <strong className="font-bold text-[#B51A1A]">Simona</strong>, 22, originally from Jaipur and currently based in Delhi, pursuing my Masters in Fashion Styling at <strong className="underline decoration-[#B51A1A]">Pearl Academy</strong>. I graduated in Film &amp; New Media from <strong className="underline decoration-[#B51A1A]">OP Jindal Global University</strong> and have experience across styling, creative direction, content, social media and shoot production.
+            </p>
+
+            <p>
+              I’ve watched your journey since school, and seeing how you’ve grown your content into a full-fledged creator career is what made me want to reach out.
+            </p>
+
+            <blockquote className="my-6 p-6 rounded-xl bg-[#F2D6D0]/35 border-l-4 border-[#B51A1A] text-left italic text-xl sm:text-2xl font-serif text-[#5C1D24] leading-snug">
+              "I see your content as much more than social media. With your mix of fashion, beauty, lifestyle and personality-led content, I feel there’s a lot of potential to build an even stronger personal brand around what you already do best."
+            </blockquote>
+
+            <p className="font-medium text-stone-900">
+              I’d love to be the person behind the ideas, opportunities, shoots and brand collaborations that help take it further.
+            </p>
+
+            {/* Micro Credential Badges */}
+            <div className="pt-6 border-t border-stone-200 flex flex-wrap items-center justify-center sm:justify-start gap-3 text-xs font-sans font-semibold text-stone-700">
+              <span className="flex items-center space-x-1.5 bg-white px-3 py-1.5 rounded-full border border-stone-300 shadow-2xs">
+                <MapPin className="w-3.5 h-3.5 text-[#B51A1A]" />
+                <span>Jaipur ➔ Delhi</span>
+              </span>
+              <span className="flex items-center space-x-1.5 bg-white px-3 py-1.5 rounded-full border border-stone-300 shadow-2xs">
+                <GraduationCap className="w-3.5 h-3.5 text-[#B51A1A]" />
+                <span>Masters in Fashion Styling (Pearl Academy)</span>
+              </span>
+              <span className="flex items-center space-x-1.5 bg-white px-3 py-1.5 rounded-full border border-stone-300 shadow-2xs">
+                <Award className="w-3.5 h-3.5 text-[#B51A1A]" />
+                <span>Film &amp; New Media (OP Jindal)</span>
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
-  )
+  );
 }

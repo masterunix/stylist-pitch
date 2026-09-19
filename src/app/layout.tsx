@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Playfair_Display, Inter } from "next/font/google";
+import { Cormorant_Garamond, Playfair_Display, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -19,18 +19,30 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const jakarta = Plus_Jakarta_Sans({
+  weight: ["600", "700", "800"],
+  subsets: ["latin"],
+  variable: "--font-display",
+});
+
 export const metadata: Metadata = {
-  title: "Simona × Muskan — Creative Vision",
-  description: "A pitch from Simona Dhamija (creative manager/fashion stylist) to Muskan.",
+  title: "Simona × Muskan — Creative Management & Brand Strategy",
+  description: "A bespoke creative direction, styling & brand partnership pitch for Muskan by Simona Dhamija.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${playfair.variable} ${inter.variable}`}
+      className={`${cormorant.variable} ${playfair.variable} ${inter.variable} ${jakarta.variable}`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full antialiased selection:bg-[#B51A1A] selection:text-white">
+        {children}
+      </body>
     </html>
   );
 }
